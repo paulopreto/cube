@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Maximum allowed size in bytes (24MB = 24 * 1024 * 1024)
+max_size=25165824
+
+# Check if any file exceeds the maximum size
+for file in $(git diff --cached --name-only); do
+  if [ -f "$file" ]; then
+    file_size=$(wc -c <"$file")
+    if [ $file_size -ge $max_size ]; then
+      echo "Error: The file '$file' is $(($file_size / 1024 / 1024))MB, which exceeds the 24MB limit."
+      exit 1
+    fi
+  fi
+done
+
