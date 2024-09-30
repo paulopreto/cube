@@ -1,3 +1,6 @@
+# Ingore dir
+data/ignore_data/
+
 # General temporaly files
 .DS_Store
 .AppleDouble
